@@ -72,13 +72,13 @@ a group of campers that plays sports competitively.  Comprised of campers from m
 _sport_
 
 
-| id |  account_id | name |
-| -------- | --------- | ------- |
-0 | | baseball |
-1 |  | basketball | 
+| id |  account_id | name | available_when_wet | 
+| -------- | --------- | ------- | ---- |
+0 | | baseball | 
+1 |  | basketball | true |
 2 |  | volleyball | 
-3 |  | hockey |
-4 |  | football |
+3 |  | hockey | true |
+4 |  | football | 
 
 _special_activity_
 
@@ -91,12 +91,16 @@ _special_activity_
 
 
 _court_
+name is sort of like a nickname, location is more descriptive
 
-| id |  account_id | sport_id | quantity | is_outdoors |
-| -------- | --------- | ------- | ------ | ----- |
-| |  | 1 (basketball) | 2 | true | 
-| |  | 1 (basketball) | 3 | false | 
-| |  | 3 (hockey) | 3 | false | 
+| id | name | account_id | sport_id | is_outdoors | location | 
+| -------- | --------- | ------- | ------ | ----- | ---- |
+| | Basketball Court 1 |  | 1  | true | by entrance |
+| | Gym | |  1  | false | |
+| | Hockey Mega |  | 3  | false |  furthest court |
+| | Hockey Megazine |  | 3  | false |  closer court |
+
+?? possibly court cache to store the number of each type of court?
 
 ### Time Based Tables
 All of these tables are used to track time-related data
@@ -116,9 +120,14 @@ either first half (july) or second half (august)
 | -------- | --------- | ------ |
 
 _game_
+a league game
+| id |  account_id | name | team_1_id | team_2_id | activity_id |
+| -------- | --------- | ------ | ----- | -------- | ------ |
 
-| id |  account_id | name | activity_id
-| -------- | --------- | ------ | ----- |
+_game_stat_
+| id | game_id | is_tie | winner_team_id | loser_team_id |
+| -------- | --------- | ------ | ----- | -------- | 
+
 
 _day_type_
 determines the schedule - e.g. less activities on a friday or a trip day
@@ -133,18 +142,35 @@ _day_
 | id |  account_id | date | type_id |
 | -------- | --------- | ------ | ---- |
 
-_activity_type_
+_day_session_type_
 
 | id |  account_id | name | start_time | end_time | 
 | -------- | --------- | ------ | ---- | ----- |
 
 
 
-_activity_
-a slot of time in a day that can be allotted to a specific activity or sport
+_day_session_division_
+swimming and leagues, all have to be done by the entire division at once
+can't swim or have leagues when raining
 
 
-| id |  account_id | day_id | type_id | is_wet | is_raining | 
-| -------- | --------- | ------ | ---- | ---- | ------ |
+| id |  account_id | day_id | type_id | is_wet  | is_leagues |
+| -------- | --------- | ------ | ---- | ---- | ------ | ---- |
+
+
+_day_session_activity_
+a slot of time in a day that can be allotted to a specific activity or sport.
+this is not leagues
+
+
+| id |  account_id | day_id | type_id | is_wet | | bunk_id | 
+| -------- | --------- | ------ | ---- | ---- | ---- |
+
+
+_day_session_league_game_
+
+
+| id |  account_id | day_id | type_id | is_wet | | team_id | 
+| -------- | --------- | ------ | ---- | ---- | ---- |
 
 
