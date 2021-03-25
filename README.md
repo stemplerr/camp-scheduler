@@ -63,12 +63,6 @@ a child in the camp
 | -------- | --------- | --------- |  --------- |  --------- |  --------- | ------ |
 
 
-_team_
-a group of campers that plays sports competitively.  Comprised of campers from multiple bunks
-
-| id |  account_id | name | division_id |
-| -------- | --------- | --------- | ------- |
-
 _sport_
 
 
@@ -88,6 +82,7 @@ _special_activity_
 2 |  | biking |
 3 |  | arts and crafts |
 4 |  | boating |
+5 |  | TBA (to be announced) | 
 
 
 _court_
@@ -121,9 +116,8 @@ either first half (july) or second half (august)
 
 _day_
 
-
-| id |  account_id | date | type_id |
-| -------- | --------- | ------ | ---- |
+| id |  account_id | date | type_id | admin_notes |
+| -------- | --------- | ------ | ---- | --- |
 
 _day_type_
 determines the schedule - e.g. less activities on a friday or a trip day
@@ -132,40 +126,46 @@ determines the schedule - e.g. less activities on a friday or a trip day
 | -------- | --------- | ------ | ---- | ----- |
 
 
-_league_game_
-a league game
 
-| id |  account_id | name | team_1_id | team_2_id | 
-| -------- | --------- | ------ | ----- | -------- |
-
-_league_game_stat_
-
-| id | game_id | is_tie | winner_team_id | loser_team_id |
-| -------- | --------- | ------ | ----- | -------- |
-
-
-_activity_
+### _activity_slot_
 a slot of time in a day that can be allotted to a specific activity or sport
+### THERE CAN ONLY BE 1 LINK PER ACTIVITY SLOT
+#### one of bunk_id or league_game_id must be blank
+#### if bunk_id is set, one of sport or special_activity must be set
+#### if league_id is set, both sport and special_actiity must be blank
 
-| id |  account_id | day_id | type_id | is_wet |
-| -------- | --------- | ------ | ---- | ---- | ---- |
+
+| id |  account_id | day_id | type_id | is_wet |  bunk_id | sport_id | special_activity_id | league_game_id |
+| -------- | --------- | ------ | ---- | ---- | -------- | --------- | --------- | --------- | 
 
 
-_activity_type_
+_activity_slot_type_
 
 | id |  account_id | name | start_time | end_time | order | 
 | -------- | --------- | ------ | ---- | ----- | --- |
 | |  | First Activity | 12:30PM | 1:45PM | 1 |
 
-_link_activity_bunk_
 
-| activity_id |  bunk_id | 
-| -------- | --------- | 
+## LEAGUES
 
-_link_activity_league_
-all teams in a division always play leagues during the same activity
 
-| activity_id |  league_id | division_id |
-| -------- | --------- | ---- |
+_team_
+a group of campers that plays sports competitively.  Comprised of campers from multiple bunks
+
+| id |  account_id | name | division_id |
+| -------- | --------- | --------- | ------- |
+
+_league_game_
+a  competitive sports game, one team against another 
+
+| id |  account_id | name | team_1_id | team_2_id | sport_id |
+| -------- | --------- | ------ | ----- | -------- | --- |
+
+_league_game_stat_
+
+| id | league_game_id | is_tie | winner_team_id | loser_team_id |
+| -------- | --------- | ------ | ----- | -------- |
+
+todo:  playoffs
 
 
