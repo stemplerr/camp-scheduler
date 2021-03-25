@@ -119,15 +119,11 @@ either first half (july) or second half (august)
 | id |  account_id | name |
 | -------- | --------- | ------ |
 
-_game_
-a league game
-| id |  account_id | name | team_1_id | team_2_id | activity_id |
-| -------- | --------- | ------ | ----- | -------- | ------ |
+_day_
 
-_game_stat_
-| id | game_id | is_tie | winner_team_id | loser_team_id |
-| -------- | --------- | ------ | ----- | -------- |
 
+| id |  account_id | date | type_id |
+| -------- | --------- | ------ | ---- |
 
 _day_type_
 determines the schedule - e.g. less activities on a friday or a trip day
@@ -136,41 +132,40 @@ determines the schedule - e.g. less activities on a friday or a trip day
 | -------- | --------- | ------ | ---- | ----- |
 
 
-_day_
+_league_game_
+a league game
+
+| id |  account_id | name | team_1_id | team_2_id | 
+| -------- | --------- | ------ | ----- | -------- |
+
+_league_game_stat_
+
+| id | game_id | is_tie | winner_team_id | loser_team_id |
+| -------- | --------- | ------ | ----- | -------- |
 
 
-| id |  account_id | date | type_id |
-| -------- | --------- | ------ | ---- |
+_activity_
+a slot of time in a day that can be allotted to a specific activity or sport
 
-_day_session_type_
-
-| id |  account_id | name | start_time | end_time | 
-| -------- | --------- | ------ | ---- | ----- |
-
-
-
-_day_session_division_
-swimming and leagues, all have to be done by the entire division at once
-can't swim or have leagues when raining
-
-
-| id |  account_id | day_id | type_id | is_wet  | is_leagues |
-| -------- | --------- | ------ | ---- | ---- | ------ | ---- |
-
-
-_day_session_activity_
-a slot of time in a day that can be allotted to a specific activity or sport.
-this is not leagues
-
-
-| id |  account_id | day_id | type_id | is_wet | | bunk_id |
+| id |  account_id | day_id | type_id | is_wet |
 | -------- | --------- | ------ | ---- | ---- | ---- |
 
 
-_day_session_league_game_
+_activity_type_
 
+| id |  account_id | name | start_time | end_time | order | 
+| -------- | --------- | ------ | ---- | ----- | --- |
+| |  | First Activity | 12:30PM | 1:45PM | 1 |
 
-| id |  account_id | day_id | type_id | is_wet | | team_id |
-| -------- | --------- | ------ | ---- | ---- | ---- |
+_link_activity_bunk_
+
+| activity_id |  bunk_id | 
+| -------- | --------- | 
+
+_link_activity_league_
+all teams in a division always play leagues during the same activity
+
+| activity_id |  league_id | division_id |
+| -------- | --------- | ---- |
 
 
