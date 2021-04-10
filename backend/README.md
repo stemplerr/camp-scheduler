@@ -14,7 +14,7 @@ cp .env.example .env
 APP_PORT=9001 ./vendor/bin/sail up
 ```
 
-Go to [localhost](http://localhost:9000) to confirm you see the Laravel home screen.
+Go to [localhost](http://localhost:9001) to confirm you see the Laravel home screen.
 
 ```bash
 sail artisan key:generate
