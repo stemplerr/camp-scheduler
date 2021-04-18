@@ -5,11 +5,41 @@
 * Handles "leagues" - sports competitions between teams
 
 
+## Development 
+
+```
+git clone git@github.com:stemplerr/camp-scheduler.git
+cd camp-scheduler/api
+cp .env.dev .env
+cd ..
+cd docker
+docker-compose up -d 
+docker-compose api php artisan key:generate
+docker-compose api php aritsan migrate --seed
+```
+
+(Optional) Edit Host 
+
+```
+# BEGIN Laravel
+127.0.0.1 camp-scheduler.test
+# END Laravel
+# BEGIN React
+127.0.0.1 camp-scheduler.ui
+# END React
+```
+After the container for the app is built visit:
+- [camp-scheduler.ui](http://camp-scheduler.ui:3000/)
+- [camp-scheduler.test](http://camp-scheduler.test/)
+
+
+
 **Leagues**
 
 Within each age group, each team must compete against every other team in every sport
 
 There is one winning team per age group
+
 
 ## Table Structure 
 
